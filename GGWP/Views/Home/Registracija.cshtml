@@ -1,0 +1,92 @@
+﻿@model GGWP.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GGWP</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/semantic/semantic.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/semantic.js"></script>
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="sadrzaj" style="padding-top: 7%; width: 40%; margin: 0 auto; text-align: center;">
+        
+    <div id="logoCircle" class="logoCircle"></div>
+        
+    @using (Html.BeginForm("Registracija", "Home", FormMethod.Post))
+    {
+        <div class="al" style="padding-top: 5%;"></div>
+        <div class="header">Registracija</div>
+
+        <div class="ui inverted form" style="padding-top: 8%;">
+            <div class="field">
+                <label><i class="mail icon"></i> Ime i prezime</label>
+                <input placeholder="First Name" type="text">
+            </div>
+            <br />
+            <label><i class="mail icon"></i> Spol</label>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input name="spol" checked="" tabindex="0" class="hidden" type="radio">
+                        <label>Muški</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input name="spol" tabindex="0" class="hidden" type="radio">
+                        <label>Ženski</label>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="field">
+                <label><i class="mail icon"></i> Dob</label>
+                <input placeholder="Dob" type="number">
+            </div>
+
+            <div class="ui divider"></div>
+            <br />
+
+            <div class="two fields">
+                <div class="field">
+                    <label><i class="mail icon"></i> Korisničko ime</label>
+                    <input placeholder="Korisničko ime" type="text">
+                </div>
+                <div class="field">
+                    <label><i class="mail icon"></i> e-Mail</label>
+                    <input placeholder="e-Mail" type="text">
+                </div>
+            </div>
+            <br />
+            <div class="two fields">
+                <div class="field">
+                    <label><i class="mail icon"></i> Lozinka</label>
+                    <input placeholder="Lozinka" type="text">
+                </div>
+                <div class="field">
+                    <label><i class="mail icon"></i> Ponovi lozinku</label>
+                    <input placeholder="Ponovi lozinku" type="text">
+                </div>
+            </div>
+            <br />
+            <div class="field">
+                <button class="loginButton" id="registerBtn" type="submit">Registriraj se</button>
+            </div>
+        </div>
+
+    }
+</div>
+
+<script src="~/Scripts/registration.js"></script>
+</body>
+</html>

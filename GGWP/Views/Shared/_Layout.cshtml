@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GGWP</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/semantic/semantic.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/semantic.js"></script>
+    <link href="~/Content/component2.css" rel="stylesheet" />
+    <link href="~/Content/bracket.css" rel="stylesheet" />
+    <script src="~/Scripts/polyfills.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+<div class="component" id="navigacija" style="display: none;">
+    <button class="cn-button" id="cn-button"></button>
+    <div class="cn-wrapper" id="cn-wrapper">
+        <ul>
+            <li><a href="~/Home/Index"><span>Vijesti</span></a></li>
+            <li><a href="~/Home/Raspored"><span>Raspored</span></a></li>
+            <li><a href="~/Home/Igre"><span>Igre</span></a></li>
+            <li><a href="~/Home/Poruke"><h5 class="ui inverted center aligned icon header" style="padding-top: 2%;"><i class="alarm outline icon"></i>-</h5></a></li>
+            <li><a href="~/Home/Kontakt"><span>Kontakt</span></a></li>
+            <li><a href="~/Home/Profil"><span>Profil</span></a></li>
+            <li><a href="~/Home/Prijava"><span>Prijava</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="sadrzaj" id="sadrzaj" style="display: none;">
+    @RenderBody()
+    <br/>
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - GGWP</p>
+    </footer>
+</div>
+
+<script src="~/Scripts/shared.js"></script>
+<script src="~/Scripts/pageload.js"></script>
+@RenderSection("scripts", required: false)
+</body>
+</html>

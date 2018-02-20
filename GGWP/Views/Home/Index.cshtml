@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h4 class="ui horizontal inverted divider header" style="padding-bottom: 1%;">
+    <i class="newspaper icon"></i>
+    Vijesti
+</h4>
+<p></p>
+
+<div class="row" style="padding-bottom: 3%;">
+    <div class="ui search">
+        <div class="ui icon input">
+            <input class="prompt" placeholder="Pretraži..." type="text" id="searchInput">
+            <i class="search icon"></i>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="width: 50%; margin: 0 auto; text-align: left;">
+    <div class="ui items">
+        <div class="item vijest_container">
+            <div class="image">
+                <img src="~/Content/images/ggwp.png" />
+            </div>
+            <div class="content">
+                <div class="vijest_item">
+                    <a class="header">Testna vijest</a>
+                    <div class="meta">
+                        <span>1.2.2018.</span>
+                    </div>
+                    <div class="description">
+                        <p>Neki kratki testni opis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="ui divider"></div>
+        <div class="item">
+            <div class="image">
+                <img src="~/Content/images/ggwp.png" />
+            </div>
+            <div class="content">
+                <a class="header">Header</a>
+                <div class="meta">
+                    <span>Description</span>
+                </div>
+                <div class="description">
+                    <p></p>
+                </div>
+                <div class="extra">
+                    Additional Details
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="ui modal" style="text-align: center; border: 2px solid white;">
+    <div class="ui icon header" style="background-color: black; color: white;">
+        <i class="newspaper outline icon"></i>
+        Testna Vijest
+    </div>
+    <div class="ui inverted divider"></div>
+    <div class="content" style="background-color: black;">
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+    </div>
+</div>
+
+<script src="~/Scripts/index.js"></script>

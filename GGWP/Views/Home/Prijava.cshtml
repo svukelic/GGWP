@@ -1,0 +1,47 @@
+﻿@model GGWP.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GGWP</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/semantic/semantic.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script src="~/Scripts/semantic.js"></script>
+    <link href="~/Content/login.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="sadrzaj" style="padding-top: 7%;">
+        
+    <div id="logoCircle" class="logoCircle"></div>
+        
+    @using (Html.BeginForm("Prijava", "Home", FormMethod.Post))
+    {
+        <div class="al" style="padding-top: 5%;"></div>
+        <div class="container">
+            <div class="header">Prijava</div>
+            <div class='info'>*Click on the input boxes</div>
+            <input id='username' class='text' onfocus="handle2()" class='inc2' type="text" name="username" placeholder='Korisničko ime' value="">
+            <!-- Had to remove the type "password" due to the browser user credential's autofill-->
+            <input id='password' class='pass' onfocus="handle1()" class='inc1' type="pass" name="password" placeholder='Lozinka' value="">
+            <br />
+            <button class="loginButton" id="loginBtn" type="submit">Prijava</button>
+            <svg width="390" height="549" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect id='rect' class='rect1' x="0px" y="0px" rx="27" ry="27" width="300px" height="78px" style="stroke: #fff; stroke-width: 1px; fill: #000" />
+            </svg>
+        </div>
+    }
+    </div>
+
+<script src="~/Scripts/login.js"></script>
+<script src="~/Scripts/registration.js"></script>
+</body>
+</html>

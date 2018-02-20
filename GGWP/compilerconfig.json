@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Content/style.css",
+    "inputFile": "Content/style.scss"
+  },
+  {
+    "outputFile": "Content/bracket.css",
+    "inputFile": "Content/bracket.scss"
+  },
+  {
+    "outputFile": "Content/bracket.css",
+    "inputFile": "Content/bracket.less"
+  },
+  {
+    "outputFile": "Content/login.css",
+    "inputFile": "Content/login.scss"
+  }
+]

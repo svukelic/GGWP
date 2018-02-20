@@ -1,0 +1,93 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    height: 100%;
+    text-align: center;
+    color: white;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sadrzaj {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.circleBorder {
+    border: 2px solid white;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    height: 10%;
+    width: 10%;
+}
+
+.logoCircle {
+    position: relative;
+    top: 10%;
+    margin: 0 auto;
+    z-index: 11;
+    margin-top: -2.25em;
+    padding-top: 0em;
+    width: 15em;
+    height: 15em;
+    border: white;
+    border-radius: 50%;
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+    background-image: url('images/ggwp.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.raspored_item {
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.raspored_item:hover {
+    background-color: grey;
+}
+
+.vijest_container {
+    cursor: pointer;
+}
+
+.vijest_item {
+    color: #fff;
+}
+
+.raspored_sadrzaj {
+    display: none;
+}
+
+.arrow_vijest {
+    display: none;
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 40px solid #455CB8;
+    padding-right: 15px;
+}
