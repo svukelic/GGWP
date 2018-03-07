@@ -337,6 +337,8 @@
     <Content Include="Content\bracket.less" />
     <Content Include="Content\login.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\kontakt.js" />
+    <Content Include="Scripts\profili.js" />
     <Content Include="Scripts\raspored.js" />
     <Content Include="Scripts\shared.js" />
     <Content Include="Scripts\index.js" />
