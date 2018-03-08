@@ -9,7 +9,7 @@
     });
 
     $(".profili_detalji").click(function () {
-        $('.seq .lab')
+        $('.seq .profili_labela')
             .transition({
                 animation: 'scale',
                 reverse: 'auto',
