@@ -16,7 +16,7 @@
         </div>
         <div class="content">
             <div class="vijest_item">
-                <a class="header">Header</a>
+                <a class="header">League of Legends</a>
                 <div class="description">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -24,9 +24,9 @@
                 </div>
                 <div class="extra">
                     <div class="large ui buttons">
-                        <button class="ui inverted violet button">Prijavi tim</button>
+                        <button class="ui inverted violet button" onclick="@("window.location.href='" + @Url.Action("KreirajTim", "Home", new {igra="lol"}) + "'");">Prijavi tim</button>
                         <div class="or" data-text="ili"></div>
-                        <button class="ui inverted button">Pronađi tim</button>
+                        <button class="ui inverted button" onclick="@("window.location.href='" + @Url.Action("OglasnaPloca", "Home", new {igra="lol"}) + "'");">Pronađi tim</button>
                     </div>
                 </div>
             </div>

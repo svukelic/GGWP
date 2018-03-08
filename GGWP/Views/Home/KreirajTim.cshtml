@@ -1,0 +1,56 @@
+﻿@using GGWP.Models.Entities
+@model GGWP.Models.Entities.Tim
+
+@{
+    ViewBag.Title = "Vijesti";
+}
+
+<h4 class="ui horizontal inverted divider header" style="padding-bottom: 3%;">
+    <i class="user plus icon"></i>
+    Prijava tima
+</h4>
+<p></p>
+
+<div class="row" style="width: 50%; margin: 0 auto; text-align: center;">
+    
+    @if (ViewBag.messages != null)
+    {
+        foreach (string s in ViewBag.messages)
+        {
+            <h3>@s</h3>
+        }
+    }
+
+    @using (Html.BeginForm("KreirajTim", "Home", FormMethod.Post))
+    {
+        <div class="ui inverted form">
+            <div class="field">
+                <label><i class="user outline icon"></i> Naziv</label>
+                <input placeholder="Naziv" type="text" name="naziv">
+            </div>
+            <br/>
+
+            <div class="field">
+                <div class="ui checkbox">
+                    <input tabindex="0" class="hidden" type="checkbox" id="timOtvorenCheckbox" name="openCB" value="1" />
+                    <label>Tim je otvoren za prijave</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label><i class="comment outline icon"></i> Opis</label>
+                <textarea placeholder="Opis" name="opis" id="timOpis" disabled></textarea>
+            </div>
+            <br/>
+            
+            <input type="hidden" name="igra" value="@this.Request.QueryString["igra"]"/>
+
+            <div class="field">
+                <button class="ui inverted button" id="kreirajTimBtn" type="submit">Prijavi tim</button>
+            </div>
+        </div>
+    }
+
+</div>
+
+<script src="~/Scripts/kreiraj_tim.js"></script>

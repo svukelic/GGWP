@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Oglasna ploča";
+}
+
+<h4 class="ui horizontal inverted divider header">
+    <i class="list alternate outline icon"></i>
+    Oglasna ploča
+</h4>
+<p></p>
+
+<div class="row" style="padding-bottom: 3%;">
+    <div class="ui search">
+        <div class="ui icon input">
+            <input class="prompt" placeholder="Pretraži..." type="text" id="searchInput">
+            <i class="search icon"></i>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="width: 50%; margin: 0 auto; text-align: left;">
+    <div class="ui items">
+        <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;">
+            <div class="content" style="margin: 0 10px 15px 10px;">
+                <div class="vijest_item">
+                    <h3 class="header"><i class="user outline icon"></i> Naziv: Test tim</h3>
+                    <div class="meta">
+                        <span>League of Legends</span>
+                    </div>
+                    <div class="description">
+                        <div class="ui divider"></div>
+                        <h3 class="header"><i class="comment outline icon"></i> Opis:</h3>
+                        <p>Tražimo feedera</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;">
+            <div class="content" style="margin: 0 10px 15px 10px;">
+                <div class="vijest_item">
+                    <h3 class="header"><i class="user outline icon"></i> Naziv: Test tim 2</h3>
+                    <div class="meta">
+                        <span>League of Legends</span>
+                    </div>
+                    <div class="description">
+                        <div class="ui divider"></div>
+                        <h3 class="header"><i class="comment outline icon"></i> Opis:</h3>
+                        <p>Samo challengeri</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+    </div>
+</div>
+
+<div class="ui modal" style="text-align: center; border: 2px solid white; width: 25%; margin: 0 0 0 -12.5%;">
+    <div class="ui icon header" style="background-color: black; color: white;">
+        <i class="user outline icon"></i>
+        Test tim
+    </div>
+    <div class="content" style="background-color: black;">
+        <h3 class="header"><i class="comment outline icon"></i> Opis:</h3>
+        <p>Tražimo feedera</p>
+
+        <br />
+
+        <div class="ui inverted form">
+            <div class="field">
+                <label>Kontaktiraj: </label>
+                <textarea></textarea>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="ui violet inverted button">
+            <i class="envelope open outline icon"></i>
+            Pošalji poruku
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/index.js"></script>
