@@ -10,68 +10,47 @@ namespace GGWP.Models.Entities
     public class RasporedModel
     {
         [JsonProperty(PropertyName = "id")]
-        public string id { get; set; }
-        public string igra { get; set; }
-        public string tim1 { get; set; }
-        public string tim2 { get; set; }
-        public string datum { get; set; }
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public RasporedModel(string id, string igra, string tim1, string tim2, string datum)
-        {
-            this.id = id;
-            this.igra = igra;
-            this.tim1 = tim1;
-            this.tim2 = tim2;
-            this.datum = datum;
-        }
-    }
-
-    public class Raspored
-    {
-        [JsonProperty(PropertyName = "id")]
-        public string id { get; set; }
+        public int id { get; set; }
         public string igra { get; set; }
         public TimModel tim1 { get; set; }
         public TimModel tim2 { get; set; }
-        public string datum { get; set; }
+        public DateTime datum { get; set; }
 
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this);
         }
 
-        public Raspored(string id, string igra, TimModel tim1, TimModel tim2, string datum)
+        public RasporedModel() { }
+
+        public RasporedModel(Raspored raspored)
         {
-            this.id = id;
-            this.igra = igra;
-            this.tim1 = tim1;
-            this.tim2 = tim2;
-            this.datum = datum;
+            this.id = raspored.id;
+
+            this.tim1 = new TimModel(TimManager.GetTim(raspored.tim1_id));
+            this.tim2 = new TimModel(TimManager.GetTim(raspored.tim2_id));
+
+            this.igra = this.tim1.igra;
+
+            this.datum = raspored.datum;
         }
     }
 
     public class TimskiRaspored
     {
-        public TimModel tim { get; set; }
+        public Tim tim { get; set; }
         public List<RasporedModel> rasporedi;
 
-        public TimskiRaspored(TimModel t)
+        public TimskiRaspored(int tID)
+        {
+            this.tim = TimManager.GetTim(tID);
+            this.rasporedi = TimManager.GetRaspored(tID);
+        }
+
+        public TimskiRaspored(Tim t)
         {
             this.tim = t;
-            this.rasporedi = new List<RasporedModel>();
-
-            QueryManager queryManager = new QueryManager();
-
-            ResultModel result = queryManager.InitiateQuery("ReadRasporedAll", t);
-            if (result.data != null)
-            {
-                this.rasporedi = (List<RasporedModel>)result.obj;
-            }
+            this.rasporedi = TimManager.GetRaspored(t.id);
         }
     }
 
@@ -82,13 +61,13 @@ namespace GGWP.Models.Entities
         public List<Clan> clanovi;
         public string naziv { get; set; }
         public string igra { get; set; }
-        public string open { get; set; }
+        public int open { get; set; }
         public string opis { get; set; }
         public string vlasnik { get; set; }
 
         public TimModel() { }
 
-        public TimModel(string naziv, string igra, string open, string opis)
+        public TimModel(string naziv, string igra, int open, string opis)
         {
             this.naziv = naziv;
             this.igra = igra;
@@ -98,22 +77,21 @@ namespace GGWP.Models.Entities
             this.clanovi = new List<Clan>();
         }
 
+        public TimModel(Tim t)
+        {
+            this.naziv = t.naziv;
+            this.igra = TimManager.GetIgra(t.igra_id).naziv;
+            this.open = t.otvoren;
+            this.opis = t.opis;
+            this.vlasnik = ""; //placeholder
+
+            this.clanovi = TimManager.GetTimClanovi(t.id);
+        }
+
         public void DodajClana(string username, string uloga)
         {
             Clan novi = new Clan(username, uloga);
             this.clanovi.Add(novi);
-        }
-
-        public static List<TimModel> GetTimovi(bool onlyOpen)
-        {
-            List<TimModel> lista = new List<TimModel>();
-
-            using (var db = new ggwpDBEntities())
-            {
-                //if (onlyOpen) lista = db.Tim.Where(x => x.otvoren == 1).ToList();
-            }
-
-            return lista;
         }
     }
 

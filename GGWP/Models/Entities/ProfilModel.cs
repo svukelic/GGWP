@@ -16,34 +16,10 @@ namespace GGWP.Models.Entities
             this.user = new UserModel();
         }
 
-        public bool GetData(string username)
+        public ProfilModel(int uID)
         {
-            LoginModel lm = new LoginModel();
-            lm.username = username;
-            lm.password = "";
-
-            QueryManager queryManager = new QueryManager();
-
-            ResultModel result = queryManager.InitiateQuery("Login", lm);
-            if (result.data != null)
-            {
-                this.user = (UserModel) result.obj;
-            }
-            else return false;
-
-            /*ResultModel result2 = queryManager.InitiateQuery("ReadTimAll", username);
-            if (result2.data != null)
-            {
-                foreach (Tim t in (List<Tim>) result2.obj)
-                {
-                    TimskiRaspored tr = new TimskiRaspored(t);
-
-                    this.timovi.Add(tr);
-                }
-            }*/
-            //else return false;
-
-            return true;
+            this.user = AuthenticationModel.GetKorisnikData(uID);
+            this.timovi = TimManager.GetTimskiRaspored(uID);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace GGWP.Controllers
             model.username = username;
             model.password = password;
             AuthenticationModel auth = new AuthenticationModel(model);
-            bool login = auth.LoginUser();
+            bool login = true; //auth.LoginUser();
 
             if (login)
             {
@@ -62,7 +62,7 @@ namespace GGWP.Controllers
 
             if (ok)
             {
-                QueryManager queryManager = new QueryManager();
+                /*QueryManager queryManager = new QueryManager();
                 ResultModel result = queryManager.InitiateQuery("Register", model);
 
                 if (result.data == null)
@@ -74,7 +74,7 @@ namespace GGWP.Controllers
                 {
                     response.code = "200";
                     response.payload = (UserModel)result.obj;
-                }
+                }*/
             }
             else
             {

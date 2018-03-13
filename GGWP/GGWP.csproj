@@ -208,12 +208,11 @@
     </Compile>
     <Compile Include="Models\Entities\ProfilModel.cs" />
     <Compile Include="Models\Entities\RasporedModel.cs" />
-    <Compile Include="Models\RasporedManager.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\Entities\UserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\QueryManager.cs" />
     <Compile Include="Models\AuthenticationModel.cs" />
+    <Compile Include="Models\TimManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\HashWithSaltResult.cs" />
     <Compile Include="Security\PWSHasher.cs" />

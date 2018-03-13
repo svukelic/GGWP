@@ -22,15 +22,7 @@ namespace GGWP.Controllers
 
         public ActionResult Raspored()
         {
-            List<RasporedModel> model = new List<RasporedModel>();
-
-            QueryManager queryManager = new QueryManager();
-            ResultModel result = queryManager.InitiateQuery("ReadRasporedAll", "++null++");
-
-            if (result.data != null)
-            {
-                model = (List<RasporedModel>)result.obj;
-            }
+            List<RasporedModel> model = TimManager.GetRaspored(-1);
 
             return View(model);
         }
@@ -157,7 +149,7 @@ namespace GGWP.Controllers
         }
 
         [HttpPost]
-        public ActionResult KreirajTim(Tim tim, string openCB)
+        public ActionResult KreirajTim(TimModel tim, string openCB)
         {
             return View();
             /*if (this.Session["UserId"] != null && this.Session["Username"] != null)
@@ -199,8 +191,7 @@ namespace GGWP.Controllers
         {
             if (this.Session["UserId"] != null && this.Session["Username"] != null)
             {
-                ProfilModel model = new ProfilModel();
-                model.GetData(this.Session["Username"].ToString());
+                ProfilModel model = new ProfilModel(Convert.ToInt32(this.Session["UserId"]));
 
                 return View(model);
             }

@@ -28,51 +28,6 @@ namespace GGWP.Models
             this.response = "404";
         }
 
-        public bool LoginUser()
-        {
-            LoginModel model = new LoginModel();
-            model.username = this.username;
-            model.password = this.password;
-            bool test = false;
-
-            //get from db
-            QueryManager queryManager = new QueryManager();
-            ResultModel result = queryManager.InitiateQuery("Login", model);
-            if (result.data != null)
-            {
-                UserModel lm = (UserModel) result.obj;
-                this.data = (UserModel) result.obj;
-
-                //string dbSession = "checking_login_session";
-                string dbUsername = lm.username;
-                string dbPassword = lm.password;
-                string dbSalt = "ggwp";
-
-                //check if correct
-                /*if (session.Equals("-1"))
-                {
-                    //add to db
-                    dbSession = this.session;
-                }
-                else if (!dbSession.Equals(this.session))
-                {
-                    return false;
-                }*/
-
-                PWSHasher pwHasher = new PWSHasher();
-                byte[] saltBytes = Encoding.ASCII.GetBytes(dbSalt);
-                HashWithSaltResult hashResult = pwHasher.HashWithGivenSalt(this.password, 64, saltBytes);
-
-                if (hashResult.Digest.Equals(dbPassword) && this.username.Equals(dbUsername))
-                {
-                    test = true;
-                }
-
-                return test;
-            }
-            else return false;
-        }
-
         public static ResultModel LoginUser(LoginModel user)
         {
             ResultModel result = new ResultModel();
@@ -98,7 +53,7 @@ namespace GGWP.Models
 
                 if (hashResult.Digest.Equals(kor.password) && user.username.Equals(kor.username))
                 {
-                    result.SetResults(kor, true);
+                    result.SetResults(KorisnikToModel(kor), true);
                 }
             }
 
@@ -130,10 +85,35 @@ namespace GGWP.Models
 
                 user.id = newKorisnik.id;
 
-                result.SetResults(newKorisnik, true);
+                result.SetResults(user, true);
             }
 
             return result;
+        }
+
+        public static UserModel GetKorisnikData(int uID)
+        {
+            UserModel um = null;
+
+            using (var db = new ggwpDBEntities())
+            {
+                um = KorisnikToModel(db.Korisnik.Find(uID));
+            }
+
+            return um;
+        }
+
+        private static UserModel KorisnikToModel(Korisnik k)
+        {
+            UserModel um = new UserModel();
+
+            um.username = k.username;
+            //um.password = user.password;
+            um.email = k.email;
+            um.ime = k.ime;
+            um.dob = k.dob;
+
+            return um;
         }
     }
 }
