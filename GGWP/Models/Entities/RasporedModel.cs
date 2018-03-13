@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
+using GGWP.Models.db;
 
 namespace GGWP.Models.Entities
 {
@@ -35,8 +36,8 @@ namespace GGWP.Models.Entities
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
         public string igra { get; set; }
-        public Tim tim1 { get; set; }
-        public Tim tim2 { get; set; }
+        public TimModel tim1 { get; set; }
+        public TimModel tim2 { get; set; }
         public string datum { get; set; }
 
         public override string ToString()
@@ -44,7 +45,7 @@ namespace GGWP.Models.Entities
             return JsonConvert.SerializeObject(this);
         }
 
-        public Raspored(string id, string igra, Tim tim1, Tim tim2, string datum)
+        public Raspored(string id, string igra, TimModel tim1, TimModel tim2, string datum)
         {
             this.id = id;
             this.igra = igra;
@@ -56,10 +57,10 @@ namespace GGWP.Models.Entities
 
     public class TimskiRaspored
     {
-        public Tim tim { get; set; }
+        public TimModel tim { get; set; }
         public List<RasporedModel> rasporedi;
 
-        public TimskiRaspored(Tim t)
+        public TimskiRaspored(TimModel t)
         {
             this.tim = t;
             this.rasporedi = new List<RasporedModel>();
@@ -74,7 +75,7 @@ namespace GGWP.Models.Entities
         }
     }
 
-    public class Tim
+    public class TimModel
     {
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
@@ -85,9 +86,9 @@ namespace GGWP.Models.Entities
         public string opis { get; set; }
         public string vlasnik { get; set; }
 
-        public Tim() { }
+        public TimModel() { }
 
-        public Tim(string naziv, string igra, string open, string opis)
+        public TimModel(string naziv, string igra, string open, string opis)
         {
             this.naziv = naziv;
             this.igra = igra;
@@ -101,6 +102,18 @@ namespace GGWP.Models.Entities
         {
             Clan novi = new Clan(username, uloga);
             this.clanovi.Add(novi);
+        }
+
+        public static List<TimModel> GetTimovi(bool onlyOpen)
+        {
+            List<TimModel> lista = new List<TimModel>();
+
+            using (var db = new ggwpDBEntities())
+            {
+                //if (onlyOpen) lista = db.Tim.Where(x => x.otvoren == 1).ToList();
+            }
+
+            return lista;
         }
     }
 

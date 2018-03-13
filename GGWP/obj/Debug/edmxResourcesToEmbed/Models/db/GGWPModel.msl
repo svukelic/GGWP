@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ggwpDBModelStoreContainer" CdmEntityContainer="ggwpDBEntities">
+    <EntitySetMapping Name="Igra">
+      <EntityTypeMapping TypeName="ggwpDBModel.Igra">
+        <MappingFragment StoreEntitySet="Igra">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="naziv" ColumnName="naziv" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="velicina" ColumnName="velicina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korisnik">
+      <EntityTypeMapping TypeName="ggwpDBModel.Korisnik">
+        <MappingFragment StoreEntitySet="Korisnik">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikTim">
+      <EntityTypeMapping TypeName="ggwpDBModel.KorisnikTim">
+        <MappingFragment StoreEntitySet="KorisnikTim">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="korisnik_id" ColumnName="korisnik_id" />
+          <ScalarProperty Name="tim_id" ColumnName="tim_id" />
+          <ScalarProperty Name="tip" ColumnName="tip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Raspored">
+      <EntityTypeMapping TypeName="ggwpDBModel.Raspored">
+        <MappingFragment StoreEntitySet="Raspored">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tim1_id" ColumnName="tim1_id" />
+          <ScalarProperty Name="tim2_id" ColumnName="tim2_id" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="tip" ColumnName="tip" />
+          <ScalarProperty Name="rezultat" ColumnName="rezultat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tim">
+      <EntityTypeMapping TypeName="ggwpDBModel.Tim">
+        <MappingFragment StoreEntitySet="Tim">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="naziv" ColumnName="naziv" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="otvoren" ColumnName="otvoren" />
+          <ScalarProperty Name="igra_id" ColumnName="igra_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ggwpDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="session" ColumnName="session" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+          <ScalarProperty Name="spol" ColumnName="spol" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vijesti">
+      <EntityTypeMapping TypeName="ggwpDBModel.Vijesti">
+        <MappingFragment StoreEntitySet="Vijesti">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="naslov" ColumnName="naslov" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="tekst" ColumnName="tekst" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

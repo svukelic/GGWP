@@ -5,6 +5,8 @@ C:\Users\svenvu\source\repos\GGWP\GGWP\bin\GGWP.dll.config
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\GGWP.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\GGWP.pdb
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Antlr3.Runtime.dll
+C:\Users\svenvu\source\repos\GGWP\GGWP\bin\EntityFramework.dll
+C:\Users\svenvu\source\repos\GGWP\GGWP\bin\EntityFramework.SqlServer.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -27,6 +29,8 @@ C:\Users\svenvu\source\repos\GGWP\GGWP\bin\System.Web.WebPages.Deployment.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\System.Web.WebPages.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\System.Web.WebPages.Razor.dll
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\WebGrease.dll
+C:\Users\svenvu\source\repos\GGWP\GGWP\bin\EntityFramework.xml
+C:\Users\svenvu\source\repos\GGWP\GGWP\bin\EntityFramework.SqlServer.xml
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Microsoft.Azure.Documents.Client.xml
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\svenvu\source\repos\GGWP\GGWP\bin\Newtonsoft.Json.xml

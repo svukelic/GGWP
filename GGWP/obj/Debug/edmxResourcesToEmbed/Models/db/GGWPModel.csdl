@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ggwpDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Igra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="velicina" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Tim" Relationship="Self.fk_tim_igra" FromRole="Igra" ToRole="Tim" />
+  </EntityType>
+  <EntityType Name="Korisnik">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dob" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ime" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="KorisnikTim" Relationship="Self.fk_kt_korisnik" FromRole="Korisnik" ToRole="KorisnikTim" />
+  </EntityType>
+  <EntityType Name="KorisnikTim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="korisnik_id" Type="Int32" Nullable="false" />
+    <Property Name="tim_id" Type="Int32" Nullable="false" />
+    <Property Name="tip" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Korisnik" Relationship="Self.fk_kt_korisnik" FromRole="KorisnikTim" ToRole="Korisnik" />
+    <NavigationProperty Name="Tim" Relationship="Self.fk_kt_tim" FromRole="KorisnikTim" ToRole="Tim" />
+  </EntityType>
+  <EntityType Name="Raspored">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tim1_id" Type="Int32" Nullable="false" />
+    <Property Name="tim2_id" Type="Int32" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tip" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="rezultat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tim" Relationship="Self.fk_raspored_tim1" FromRole="Raspored" ToRole="Tim" />
+    <NavigationProperty Name="Tim1" Relationship="Self.fk_raspored_tim2" FromRole="Raspored" ToRole="Tim" />
+  </EntityType>
+  <EntityType Name="Tim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="otvoren" Type="Int32" Nullable="false" />
+    <Property Name="igra_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Igra" Relationship="Self.fk_tim_igra" FromRole="Tim" ToRole="Igra" />
+    <NavigationProperty Name="KorisnikTim" Relationship="Self.fk_kt_tim" FromRole="Tim" ToRole="KorisnikTim" />
+    <NavigationProperty Name="Raspored" Relationship="Self.fk_raspored_tim1" FromRole="Tim" ToRole="Raspored" />
+    <NavigationProperty Name="Raspored1" Relationship="Self.fk_raspored_tim2" FromRole="Tim" ToRole="Raspored" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="session" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="spol" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Vijesti">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="naslov" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tekst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_tim_igra">
+    <End Role="Igra" Type="Self.Igra" Multiplicity="1" />
+    <End Role="Tim" Type="Self.Tim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tim">
+        <PropertyRef Name="igra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_kt_korisnik">
+    <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+    <End Role="KorisnikTim" Type="Self.KorisnikTim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnik">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="KorisnikTim">
+        <PropertyRef Name="korisnik_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_kt_tim">
+    <End Role="Tim" Type="Self.Tim" Multiplicity="1" />
+    <End Role="KorisnikTim" Type="Self.KorisnikTim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="KorisnikTim">
+        <PropertyRef Name="tim_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_raspored_tim1">
+    <End Role="Tim" Type="Self.Tim" Multiplicity="1" />
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raspored">
+        <PropertyRef Name="tim1_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_raspored_tim2">
+    <End Role="Tim" Type="Self.Tim" Multiplicity="1" />
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raspored">
+        <PropertyRef Name="tim2_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ggwpDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Igra" EntityType="Self.Igra" />
+    <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
+    <EntitySet Name="KorisnikTim" EntityType="Self.KorisnikTim" />
+    <EntitySet Name="Raspored" EntityType="Self.Raspored" />
+    <EntitySet Name="Tim" EntityType="Self.Tim" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Vijesti" EntityType="Self.Vijesti" />
+    <AssociationSet Name="fk_tim_igra" Association="Self.fk_tim_igra">
+      <End Role="Igra" EntitySet="Igra" />
+      <End Role="Tim" EntitySet="Tim" />
+    </AssociationSet>
+    <AssociationSet Name="fk_kt_korisnik" Association="Self.fk_kt_korisnik">
+      <End Role="Korisnik" EntitySet="Korisnik" />
+      <End Role="KorisnikTim" EntitySet="KorisnikTim" />
+    </AssociationSet>
+    <AssociationSet Name="fk_kt_tim" Association="Self.fk_kt_tim">
+      <End Role="Tim" EntitySet="Tim" />
+      <End Role="KorisnikTim" EntitySet="KorisnikTim" />
+    </AssociationSet>
+    <AssociationSet Name="fk_raspored_tim1" Association="Self.fk_raspored_tim1">
+      <End Role="Tim" EntitySet="Tim" />
+      <End Role="Raspored" EntitySet="Raspored" />
+    </AssociationSet>
+    <AssociationSet Name="fk_raspored_tim2" Association="Self.fk_raspored_tim2">
+      <End Role="Tim" EntitySet="Tim" />
+      <End Role="Raspored" EntitySet="Raspored" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

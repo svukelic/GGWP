@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.Documents.Client, Version=1.20.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.DocumentDB.1.20.2\lib\net45\Microsoft.Azure.Documents.Client.dll</HintPath>
     </Reference>
@@ -63,6 +69,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -162,6 +170,42 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Api\ApiResponse.cs" />
+    <Compile Include="Models\db\GGWPModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GGWPModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\GGWPModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\GGWPModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GGWPModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\Igra.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\Korisnik.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\KorisnikTim.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\Raspored.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\Tim.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\Users.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\db\Vijesti.cs">
+      <DependentUpon>GGWPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\ProfilModel.cs" />
     <Compile Include="Models\Entities\RasporedModel.cs" />
     <Compile Include="Models\RasporedManager.cs" />
@@ -343,6 +387,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\db\GGWPModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GGWPModel.Context.cs</LastGenOutput>
+      <DependentUpon>GGWPModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\db\GGWPModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GGWPModel.edmx</DependentUpon>
+      <LastGenOutput>GGWPModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -363,6 +417,13 @@
     </None>
     <Content Include="Content\bracket.less" />
     <Content Include="Content\login.scss" />
+    <EntityDeploy Include="Models\db\GGWPModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GGWPModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\db\GGWPModel.edmx.diagram">
+      <DependentUpon>GGWPModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\ggwp-turnir - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\kreiraj_tim.js" />
@@ -429,6 +490,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

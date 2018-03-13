@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ggwpDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Igra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="naziv" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="opis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="velicina" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Korisnik">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="dob" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ime" Type="varchar" MaxLength="80" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KorisnikTim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="korisnik_id" Type="int" Nullable="false" />
+    <Property Name="tim_id" Type="int" Nullable="false" />
+    <Property Name="tip" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Raspored">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tim1_id" Type="int" Nullable="false" />
+    <Property Name="tim2_id" Type="int" Nullable="false" />
+    <Property Name="datum" Type="datetime" Nullable="false" />
+    <Property Name="tip" Type="varchar" MaxLength="80" />
+    <Property Name="rezultat" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Tim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="naziv" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="opis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="otvoren" Type="int" Nullable="false" />
+    <Property Name="igra_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="session" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ime" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="spol" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="dob" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vijesti">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="naslov" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="datum" Type="datetime" Nullable="false" />
+    <Property Name="tekst" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_kt_korisnik">
+    <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+    <End Role="KorisnikTim" Type="Self.KorisnikTim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnik">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="KorisnikTim">
+        <PropertyRef Name="korisnik_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_kt_tim">
+    <End Role="Tim" Type="Self.Tim" Multiplicity="1" />
+    <End Role="KorisnikTim" Type="Self.KorisnikTim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="KorisnikTim">
+        <PropertyRef Name="tim_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_raspored_tim1">
+    <End Role="Tim" Type="Self.Tim" Multiplicity="1" />
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raspored">
+        <PropertyRef Name="tim1_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_raspored_tim2">
+    <End Role="Tim" Type="Self.Tim" Multiplicity="1" />
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Raspored">
+        <PropertyRef Name="tim2_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tim_igra">
+    <End Role="Igra" Type="Self.Igra" Multiplicity="1" />
+    <End Role="Tim" Type="Self.Tim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tim">
+        <PropertyRef Name="igra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ggwpDBModelStoreContainer">
+    <EntitySet Name="Igra" EntityType="Self.Igra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KorisnikTim" EntityType="Self.KorisnikTim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Raspored" EntityType="Self.Raspored" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tim" EntityType="Self.Tim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vijesti" EntityType="Self.Vijesti" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_kt_korisnik" Association="Self.fk_kt_korisnik">
+      <End Role="Korisnik" EntitySet="Korisnik" />
+      <End Role="KorisnikTim" EntitySet="KorisnikTim" />
+    </AssociationSet>
+    <AssociationSet Name="fk_kt_tim" Association="Self.fk_kt_tim">
+      <End Role="Tim" EntitySet="Tim" />
+      <End Role="KorisnikTim" EntitySet="KorisnikTim" />
+    </AssociationSet>
+    <AssociationSet Name="fk_raspored_tim1" Association="Self.fk_raspored_tim1">
+      <End Role="Tim" EntitySet="Tim" />
+      <End Role="Raspored" EntitySet="Raspored" />
+    </AssociationSet>
+    <AssociationSet Name="fk_raspored_tim2" Association="Self.fk_raspored_tim2">
+      <End Role="Tim" EntitySet="Tim" />
+      <End Role="Raspored" EntitySet="Raspored" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tim_igra" Association="Self.fk_tim_igra">
+      <End Role="Igra" EntitySet="Igra" />
+      <End Role="Tim" EntitySet="Tim" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

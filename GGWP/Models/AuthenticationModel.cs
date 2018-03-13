@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using GGWP.Models.db;
 using GGWP.Models.Entities;
 using GGWP.Security;
 
@@ -72,11 +73,65 @@ namespace GGWP.Models
             else return false;
         }
 
-        public bool CreateUser()
+        public static ResultModel LoginUser(LoginModel user)
         {
-            bool result = false;
+            ResultModel result = new ResultModel();
+
+            //login user
+
+            using (var db = new ggwpDBEntities())
+            {
+                string dbSalt = "ggwp";
+                PWSHasher pwHasher = new PWSHasher();
+                byte[] saltBytes = Encoding.ASCII.GetBytes(dbSalt);
+                HashWithSaltResult hashResult = pwHasher.HashWithGivenSalt(user.password, 64, saltBytes);
+
+                Korisnik kor = null;
+                try
+                {
+                    kor = db.Korisnik.Where(x => x.username.Equals(user.username)).SingleOrDefault();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    return result;
+                }
+
+                if (hashResult.Digest.Equals(kor.password) && user.username.Equals(kor.username))
+                {
+                    result.SetResults(kor, true);
+                }
+            }
+
+            return result;
+        }
+
+        public static ResultModel CreateUser(UserModel user)
+        {
+            ResultModel result = new ResultModel();
 
             //create new user
+            PWSHasher pwHasher = new PWSHasher();
+            byte[] saltBytes = Encoding.ASCII.GetBytes("ggwp");
+            HashWithSaltResult hashResult = pwHasher.HashWithGivenSalt(user.password, 64, saltBytes);
+
+            user.password = hashResult.Digest;
+
+            using (var db = new ggwpDBEntities())
+            {
+                Korisnik newKorisnik = new Korisnik();
+                newKorisnik.username = user.username;
+                newKorisnik.password = user.password;
+                newKorisnik.email = user.email;
+                newKorisnik.ime = user.ime;
+                newKorisnik.dob = user.dob;
+
+                db.Korisnik.Add(newKorisnik);
+                db.SaveChanges();
+
+                user.id = newKorisnik.id;
+
+                result.SetResults(newKorisnik, true);
+            }
 
             return result;
         }

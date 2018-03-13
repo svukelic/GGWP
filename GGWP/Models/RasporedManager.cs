@@ -16,16 +16,16 @@ namespace GGWP.Models
 
         public async Task<List<RasporedModel>> ExecuteReadRasporedAll(object obj)
         {
+
+            this.client = new DocumentClient(new Uri(EndpointUrl), PrimaryKey);
             IQueryable<RasporedModel> Query;
             FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
 
-            if (obj != null)
+            if (obj != null && !obj.ToString().Equals("++null++"))
             {
-                Tim t = (Tim) obj;
-
                 Query = this.client.CreateDocumentQuery<RasporedModel>(
                         UriFactory.CreateDocumentCollectionUri("ggwpDB", "RasporedCollection"), queryOptions)
-                    .Where(x => x.tim1.Equals(t.naziv) || x.tim2.Equals(t.naziv));
+                    .Where(x => x.tim1.Equals(obj.ToString()) || x.tim2.Equals(obj.ToString()));
             }
             else
             {
@@ -34,8 +34,6 @@ namespace GGWP.Models
             }
 
             List<RasporedModel> returnData = new List<RasporedModel>();
-
-            this.client = new DocumentClient(new Uri(EndpointUrl), PrimaryKey);
 
             if (Query.Count() < 1)
             {
@@ -50,7 +48,7 @@ namespace GGWP.Models
             return returnData;
         }
 
-        public async Task<List<Tim>> ExecuteReadTimAll(object obj)
+        /*public async Task<List<Tim>> ExecuteReadTimAll(object obj)
         {
             string username = obj.ToString();
             List<Tim> returnData = new List<Tim>();
@@ -61,7 +59,10 @@ namespace GGWP.Models
 
             IQueryable<Tim> Query;
 
-            if (!username.Equals(""))
+            Query = this.client.CreateDocumentQuery<Tim>(
+                UriFactory.CreateDocumentCollectionUri("ggwpDB", "TimCollection"), queryOptions);
+
+            /*if (!username.Equals(""))
             {
                 Query = this.client.CreateDocumentQuery<Tim>(
                         UriFactory.CreateDocumentCollectionUri("ggwpDB", "TimCollection"), queryOptions)
@@ -80,13 +81,17 @@ namespace GGWP.Models
 
             foreach (Tim item in Query)
             {
-                returnData.Add(item);
+                if (!username.Equals("++null++"))
+                {
+                    if (item.clanovi.Any(x => x.username.Equals(username))) returnData.Add(item);
+                }
+                else returnData.Add(item);
             }
 
             return returnData;
-        }
+        }*/
 
-        private async Task<RasporedModel> CreateRaspored(object obj)
+        /*private async Task<RasporedModel> CreateRaspored(object obj)
         {
             RasporedModel rm = (RasporedModel) obj;
             Guid newId = Guid.NewGuid();
@@ -108,9 +113,9 @@ namespace GGWP.Models
                 this.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri("ggwpDB", "TimCollection"), rm);
                 return rm;
             }
-        }
+        }*/
 
-        public async Task<Tim> CreateTim(object obj)
+        /*public async Task<Tim> CreateTim(object obj)
         {
             Tim noviTim = (Tim) obj;
             Guid newId = Guid.NewGuid();
@@ -132,6 +137,6 @@ namespace GGWP.Models
                 this.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri("ggwpDB", "TimCollection"), noviTim);
                 return noviTim;
             }
-        }
+        }*/
     }
 }

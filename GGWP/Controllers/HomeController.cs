@@ -6,7 +6,9 @@ using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using GGWP.Models;
+using GGWP.Models.db;
 using GGWP.Models.Entities;
+using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.SystemFunctions;
 
 namespace GGWP.Controllers
@@ -20,7 +22,17 @@ namespace GGWP.Controllers
 
         public ActionResult Raspored()
         {
-            return View();
+            List<RasporedModel> model = new List<RasporedModel>();
+
+            QueryManager queryManager = new QueryManager();
+            ResultModel result = queryManager.InitiateQuery("ReadRasporedAll", "++null++");
+
+            if (result.data != null)
+            {
+                model = (List<RasporedModel>)result.obj;
+            }
+
+            return View(model);
         }
 
         public ActionResult Prijava()
@@ -31,14 +43,14 @@ namespace GGWP.Controllers
         [HttpPost]
         public ActionResult Prijava(LoginModel model)
         {
-            AuthenticationModel auth = new AuthenticationModel(model);
-            bool login = auth.LoginUser();
+            ResultModel result = AuthenticationModel.LoginUser(model);
 
-            if (login)
+            if (result.success)
             {
-                this.Session["UserId"] = "tempid";
-                this.Session["Username"] = auth.username;
-                ViewBag.Message = "Dobrodošli, " + auth.username;
+                Korisnik user = (Korisnik) result.obj;
+                this.Session["UserId"] = user.id;
+                this.Session["Username"] = user.username;
+                ViewBag.Message = "Dobrodošli, " + user.username;
 
                 return View("Index");
             }
@@ -83,20 +95,19 @@ namespace GGWP.Controllers
 
             if (ok)
             {
-                QueryManager queryManager = new QueryManager();
-                ResultModel result = queryManager.InitiateQuery("Register", model);
+                ResultModel result = AuthenticationModel.CreateUser(model);
 
-                if (result.data == null)
-                {
-                    messages.Add("Greška prilikom registracije!");
-                    ViewBag.messages = messages;
-                    return View("Registracija");
-                }
-                else
+                if (result.success)
                 {
                     messages.Add("Registracija uspješna!");
                     ViewBag.messages = messages;
                     return View("Prijava");
+                }
+                else
+                {
+                    messages.Add("Greška prilikom registracije!");
+                    ViewBag.messages = messages;
+                    return View("Registracija");
                 }
             }
             else
@@ -115,13 +126,18 @@ namespace GGWP.Controllers
         {
             List<Tim> model = new List<Tim>();
 
-            QueryManager queryManager = new QueryManager();
+            using (var db = new ggwpDBEntities())
+            {
+                model = db.Tim.Where(x => x.otvoren == 1).ToList();
+            }
+
+            /*QueryManager queryManager = new QueryManager();
             ResultModel result = queryManager.InitiateQuery("ReadTimAll", "");
 
             if (result.data != null)
             {
                 model = (List<Tim>) result.obj;
-            }
+            }*/
 
             return View(model);
         }
@@ -143,7 +159,8 @@ namespace GGWP.Controllers
         [HttpPost]
         public ActionResult KreirajTim(Tim tim, string openCB)
         {
-            if (this.Session["UserId"] != null && this.Session["Username"] != null)
+            return View();
+            /*if (this.Session["UserId"] != null && this.Session["Username"] != null)
             {
                 List<string> messages = new List<string>();
 
@@ -170,7 +187,7 @@ namespace GGWP.Controllers
                     return Redirect("Profil");
                 }
             }
-            else return View("Prijava");
+            else return View("Prijava");*/
         }
 
         public ActionResult Kontakt()

@@ -1,6 +1,8 @@
-﻿
+﻿@using GGWP.Models.Entities
+@model GGWP.Models.Entities.ProfilModel
+
 @{
-    ViewBag.Title = "Igre";
+    ViewBag.Title = "Profil";
 }
 
 <h4 class="ui horizontal inverted divider header">
@@ -8,6 +10,16 @@
     Igre
 </h4>
 <p></p>
+
+@foreach (TimskiRaspored tr in Model.timovi)
+{
+    <h2>@tr.tim.naziv</h2>
+
+     foreach (RasporedModel rm in tr.rasporedi)
+      {
+          <h2>@rm.tim1 vs @rm.tim2</h2>
+      }
+}
 
 <div class="ui inverted unstackable divided items" style="width: 50%; margin: 0 auto;">
     <div class="item">

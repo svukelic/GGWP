@@ -68,7 +68,7 @@ namespace GGWP.Models
                             result.obj = taskRasporedAll.Result;
                         }
                         break;
-                    case "ReadTimAll":
+                    /*case "ReadTimAll":
                         var taskTimAll = rm.ExecuteReadTimAll(obj);
                         taskTimAll.Wait();
                         if (taskTimAll.Result == null)
@@ -93,7 +93,7 @@ namespace GGWP.Models
                             result.data = JsonConvert.SerializeObject(taskCreateTim.Result);
                             result.obj = taskCreateTim.Result;
                         }
-                        break;
+                        break;*/
                 }
             }
             catch (DocumentClientException de)

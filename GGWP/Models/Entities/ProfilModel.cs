@@ -31,7 +31,7 @@ namespace GGWP.Models.Entities
             }
             else return false;
 
-            ResultModel result2 = queryManager.InitiateQuery("ReadTimAll", username);
+            /*ResultModel result2 = queryManager.InitiateQuery("ReadTimAll", username);
             if (result2.data != null)
             {
                 foreach (Tim t in (List<Tim>) result2.obj)
@@ -40,7 +40,7 @@ namespace GGWP.Models.Entities
 
                     this.timovi.Add(tr);
                 }
-            }
+            }*/
             //else return false;
 
             return true;
