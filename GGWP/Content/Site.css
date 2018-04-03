@@ -91,3 +91,184 @@ textarea {
     border-left: 40px solid #455CB8;
     padding-right: 15px;
 }
+
+.raspored_labela {
+    margin: 5px;
+}
+
+.raspored_naziv_tima {
+    text-align: center;
+}
+
+#raspored_timovi:hover {
+    cursor: pointer;
+    background-color: grey;
+    border-radius: 10px;
+}
+
+#raspored_form_button {
+    width: 30%;
+}
+
+#raspored_timovi {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.raspored_form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.raspored_icon{
+    border: 1px solid;
+}
+
+#raspored_labela {
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+div.tournament-bracket__match {
+    border-radius: 10px;
+}
+
+h3.header {
+    text-align: center;
+}
+
+span.tournament-bracket__number {
+    color: black;
+}
+
+.raspored_seq{
+    visibility: hidden;
+}
+
+/*Profili*/
+.centerImage {
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#centerColumn {
+    margin: 0 auto;
+}
+
+#hidden_left {
+    display: none;
+}
+
+#hidden_right {
+    display: none;
+    margin: 13px 15px;
+}
+
+#hidden_right > .detalji {
+        margin: 0 auto;
+}
+
+.profili_detalji {
+    margin-top: 15px;
+}
+
+.profili_detalji:hover {
+        cursor: pointer;
+}
+
+.infor {
+    margin-bottom: 5px;
+}
+
+.labela {
+    width: 100%;
+    text-align: right;
+    border-radius: 10px;
+}
+
+label.ui.big.label.labela {
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-color: #2185d0;
+}
+
+label.ui.big.label.profili_labela {
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px solid;
+    border-color: #2185d0;
+}
+
+#profili_pod > .column > .profili_labela {
+    border-color: green;
+}
+
+#match {
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 5px;
+    background-color: black;
+    border: 1px solid;
+    border-color: #2185d0;
+}
+
+.seq {
+    visibility: hidden;
+}
+
+#first {
+    margin-bottom: -25px;
+}
+
+#seqLabel {
+    margin: 5px;
+}
+
+.profili_raspored {
+    display: none;
+}
+
+/*Kontakt*/
+#kontakt_org{
+    display: none;
+}
+
+#kontakt_button{
+    margin-bottom: 10px;
+}
+
+.kontakt_organizatori_opis {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+grid.column.kontakt_info{
+    text-align: center;
+}
+
+#kontakt_centered_row > .kontakt_info {
+    text-align: center;
+}
+
+#kontakt_info{
+    text-align:center;
+}
+
+#kontakt_grid > column {
+    margin: 5px;
+    width: 30%;
+    border: 1px dashed;
+    border-radius: 10px;
+}
+
+#kontakt_grid > .column > .header > .kontakt_ikona {
+    border: 2px solid;
+    padding: 25px;
+    border-radius: 100px;
+}

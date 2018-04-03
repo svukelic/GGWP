@@ -425,8 +425,13 @@
     </Content>
     <None Include="Properties\PublishProfiles\ggwp-turnir - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+<<<<<<< HEAD
     <Content Include="Scripts\kreiraj_tim.js" />
     <Content Include="Scripts\messages.js" />
+=======
+    <Content Include="Scripts\kontakt.js" />
+    <Content Include="Scripts\profili.js" />
+>>>>>>> origin/Profil_Kontakt_Raspored
     <Content Include="Scripts\raspored.js" />
     <Content Include="Scripts\shared.js" />
     <Content Include="Scripts\index.js" />
