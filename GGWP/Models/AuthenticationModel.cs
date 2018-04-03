@@ -28,10 +28,10 @@ namespace GGWP.Models
             this.response = "404";
         }
 
-        public static ResultModel LoginUser(LoginModel user)
+        public static Korisnik LoginUser(LoginModel user)
         {
             ResultModel result = new ResultModel();
-
+            Korisnik kor = null;
             //login user
 
             using (var db = new ggwpDBEntities())
@@ -41,23 +41,26 @@ namespace GGWP.Models
                 byte[] saltBytes = Encoding.ASCII.GetBytes(dbSalt);
                 HashWithSaltResult hashResult = pwHasher.HashWithGivenSalt(user.password, 64, saltBytes);
 
-                Korisnik kor = null;
                 try
                 {
                     kor = db.Korisnik.Where(x => x.username.Equals(user.username)).SingleOrDefault();
                 }
                 catch (InvalidOperationException ex)
                 {
-                    return result;
+                    return null;
                 }
 
                 if (hashResult.Digest.Equals(kor.password) && user.username.Equals(kor.username))
                 {
                     result.SetResults(KorisnikToModel(kor), true);
                 }
+                else
+                {
+                    kor = null;
+                }
             }
 
-            return result;
+            return kor;
         }
 
         public static ResultModel CreateUser(UserModel user)
@@ -107,6 +110,7 @@ namespace GGWP.Models
         {
             UserModel um = new UserModel();
 
+            um.id = k.id;
             um.username = k.username;
             //um.password = user.password;
             um.email = k.email;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
@@ -17,7 +18,14 @@ namespace GGWP.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<Vijesti> vijesti = new List<Vijesti>();
+
+            using (var db = new ggwpDBEntities())
+            {
+                vijesti = db.Vijesti.Where(x => x.status != -1).ToList();
+            }
+
+            return View(vijesti);
         }
 
         public ActionResult Raspored()
@@ -35,14 +43,15 @@ namespace GGWP.Controllers
         [HttpPost]
         public ActionResult Prijava(LoginModel model)
         {
-            ResultModel result = AuthenticationModel.LoginUser(model);
+            //ResultModel result = AuthenticationModel.LoginUser(model);
+            Korisnik kor = AuthenticationModel.LoginUser(model);
 
-            if (result.success)
+            if (kor != null)
             {
-                Korisnik user = (Korisnik) result.obj;
-                this.Session["UserId"] = user.id;
-                this.Session["Username"] = user.username;
-                ViewBag.Message = "Dobrodošli, " + user.username;
+                //Korisnik user = (Korisnik) result.obj;
+                this.Session["UserId"] = kor.id;
+                this.Session["Username"] = kor.username;
+                ViewBag.Message = "Dobrodošli, " + kor.username;
 
                 return View("Index");
             }

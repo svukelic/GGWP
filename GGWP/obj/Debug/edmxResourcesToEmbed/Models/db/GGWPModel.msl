@@ -73,6 +73,8 @@
     <EntitySetMapping Name="Vijesti">
       <EntityTypeMapping TypeName="ggwpDBModel.Vijesti">
         <MappingFragment StoreEntitySet="Vijesti">
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="naslov" ColumnName="naslov" />
           <ScalarProperty Name="datum" ColumnName="datum" />

@@ -82,6 +82,8 @@
     <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="tekst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+    <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="fk_tim_igra">
     <End Role="Igra" Type="Self.Igra" Multiplicity="1" />

@@ -1,12 +1,36 @@
-$(document).ready(function () {
+﻿//vijesti
+function VijestKlik(vid) {
 
-    //vijesti
-    $(".vijest_container").click(function() {
-        $('.ui.modal').modal({
-                centered: false
-            })
-            .modal('show');
+    $.ajax({
+        type: "POST",
+        url: "/Mobile/GetVijest",
+        dataType: 'json',
+        data: { "vid": vid },
+        success: function (jsonData) {
+            if (jsonData.code == "200") {
+                $("#detalji_naslov").text(jsonData.payload.naslov);
+                $("#detalji_tekst").text(jsonData.payload.tekst);
+                $("#detalji_img").attr("src", jsonData.payload.img);
+
+                var parts = jsonData.payload.datum.split("T");
+                $("#detalji_datum").text(parts[0]);
+
+                $('.ui.modal').modal({
+                    centered: false
+                })
+                    .modal('show');
+            }
+            else {
+                alert("Vijest nije pronađena");
+            }
+        },
+        error: function (jsonData) {
+            alert("Error");
+        }
     });
+}
+
+$(document).ready(function () {
 
     $(".vijest_container").hover(
         function () {

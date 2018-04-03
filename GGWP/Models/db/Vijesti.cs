@@ -19,5 +19,7 @@ namespace GGWP.Models.db
         public System.DateTime datum { get; set; }
         public string tekst { get; set; }
         public int status { get; set; }
+        public string description { get; set; }
+        public string img { get; set; }
     }
 }

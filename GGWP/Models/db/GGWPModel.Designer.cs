@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\svenvu\source\repos\GGWP\GGWP\Models\db\GGWPModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\The Director\Documents\GitHub\GGWP\GGWP\Models\db\GGWPModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

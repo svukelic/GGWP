@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ggwpDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ggwpDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Igra">
           <Key>
             <PropertyRef Name="id" />
@@ -77,6 +77,8 @@
           <Property Name="datum" Type="datetime" Nullable="false" />
           <Property Name="tekst" Type="nvarchar(max)" Nullable="false" />
           <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="800" />
+          <Property Name="img" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="fk_kt_korisnik">
           <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
@@ -167,8 +169,7 @@
             <End Role="Tim" EntitySet="Tim" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ggwpDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -254,6 +255,8 @@
           <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="tekst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_tim_igra">
           <End Role="Igra" Type="Self.Igra" Multiplicity="1" />
@@ -422,6 +425,8 @@
           <EntitySetMapping Name="Vijesti">
             <EntityTypeMapping TypeName="ggwpDBModel.Vijesti">
               <MappingFragment StoreEntitySet="Vijesti">
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="naslov" ColumnName="naslov" />
                 <ScalarProperty Name="datum" ColumnName="datum" />
