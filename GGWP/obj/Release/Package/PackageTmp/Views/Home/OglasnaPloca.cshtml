@@ -1,4 +1,6 @@
-﻿
+﻿@using GGWP.Models.db
+@model List<GGWP.Models.db.Tim>
+
 @{
     ViewBag.Title = "Oglasna ploča";
 }
@@ -20,6 +22,12 @@
 
 <div class="row" style="width: 50%; margin: 0 auto; text-align: left;">
     <div class="ui items">
+        
+        @foreach (Tim t in Model)
+        {
+            <h2>@t.naziv</h2>
+        }
+
         <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;">
             <div class="content" style="margin: 0 10px 15px 10px;">
                 <div class="vijest_item">
@@ -35,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <br />
+        <br/>
 
         <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;">
             <div class="content" style="margin: 0 10px 15px 10px;">
@@ -52,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <br />
+        <br/>
 
     </div>
 </div>

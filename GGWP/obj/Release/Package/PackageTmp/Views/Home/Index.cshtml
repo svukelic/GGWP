@@ -1,4 +1,7 @@
-﻿@{
+﻿@using GGWP.Models.db
+@model IEnumerable<GGWP.Models.db.Vijesti>
+
+@{
     ViewBag.Title = "Vijesti";
 }
 
@@ -18,62 +21,53 @@
 </div>
 
 <div class="row" style="width: 50%; margin: 0 auto; text-align: left;">
+
     <div class="ui items">
-        <div class="item vijest_container">
+
+        @foreach (Vijesti v in Model)
+    {
+        <div class="item vijest_container" onclick="VijestKlik(@v.id)">
             <div class="image">
-                <img src="~/Content/images/ggwp.png" />
+                <img src="@v.img" />
             </div>
             <div class="content">
                 <div class="vijest_item">
-                    <div class="header">Testna vijest</div>
+                    <div class="header">@v.naslov</div>
                     <div class="meta">
-                        <span>1.2.2018.</span>
+                        <span>@v.datum</span>
                     </div>
                     <div class="description">
-                        <p>Neki kratki testni opis</p>
+                        <p>@v.description</p>
                     </div>
                 </div>
             </div>
         </div>
-        <br/>
+        <br />
         <div class="ui divider"></div>
-        <div class="item">
-            <div class="image">
-                <img src="~/Content/images/ggwp.png" />
-            </div>
-            <div class="content">
-                <a class="header">Header</a>
-                <div class="meta">
-                    <span>Description</span>
-                </div>
-                <div class="description">
-                    <p></p>
-                </div>
-                <div class="extra">
-                    Additional Details
-                </div>
-            </div>
-        </div>
+}
 
     </div>
+
 </div>
 
 <div class="ui modal" style="text-align: center; border: 2px solid white;">
     <div class="ui icon header" style="background-color: black; color: white;">
         <i class="newspaper outline icon"></i>
-        Testna Vijest
+        <div id="detalji_naslov">Naslov</div>
         <div style="padding-top: 15px;" class="ui divider"></div>
     </div>
-    
+
     <div class="meta" style="background-color: black; color: grey;">
-        <span>1.2.2018.</span>
+        <span id="detalji_datum">1.2.2018.</span>
     </div>
 
     <div class="content" style="background-color: black;">
         <div class="ui divider"></div>
         <br />
+        <img src="http://ggwp-turnir.azurewebsites.net/Content/images/ggwp.png" id="detalji_img" style="height:100px;"/>
+        <br />
 
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+        <p style="padding-top: 10px;" id="detalji_tekst">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
     </div>
 </div>
 

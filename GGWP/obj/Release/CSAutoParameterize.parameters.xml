@@ -1,2 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters />
+<parameters>
+  <parameter name="ggwpDBEntities-Web.config Connection String" description="ggwpDBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.db.GGWPModel.csdl|res://*/Models.db.GGWPModel.ssdl|res://*/Models.db.GGWPModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ggwpdb.database.windows.net;initial catalog=ggwpDB;persist security info=True;user id=ggwp;password=Belaciganka1;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\The\ Director\\Documents\\GitHub\\GGWP\\GGWP\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ggwpDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

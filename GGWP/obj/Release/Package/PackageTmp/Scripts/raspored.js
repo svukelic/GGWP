@@ -15,8 +15,19 @@ $(document).ready(function () {
     });
 
     //raspored
-    $(".raspored_item").click(function() {
-        $(this).find("div.raspored_sadrzaj").transition('fade');
+
+    $(".raspored_gumb").click(function () {
+        $('.raspored_seq .but')
+            .transition({
+                animation: 'fade',
+                reverse: 'auto',
+                interval: 200
+            })
+            ;
     });
 
+    $("#raspored_timovi").click(function() {
+        $(".raspored_sadrzaj").transition('slide down');
+    });
+  
 });

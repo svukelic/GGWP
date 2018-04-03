@@ -53,7 +53,7 @@ namespace GGWP.Controllers
                 this.Session["Username"] = kor.username;
                 ViewBag.Message = "Dobrodošli, " + kor.username;
 
-                return View("Index");
+                return Redirect("Index");
             }
             else
             {
