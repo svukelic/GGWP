@@ -40,11 +40,13 @@ namespace GGWP.Models.Entities
     {
         public Tim tim { get; set; }
         public List<RasporedModel> rasporedi;
+        public List<Clan> clanovi;
 
         public TimskiRaspored(int tID)
         {
             this.tim = TimManager.GetTim(tID);
             this.rasporedi = TimManager.GetRaspored(tID);
+            this.clanovi = TimManager.GetTimClanovi(tID);
         }
 
         public TimskiRaspored(Tim t)

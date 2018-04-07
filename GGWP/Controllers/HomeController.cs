@@ -132,14 +132,6 @@ namespace GGWP.Controllers
                 model = db.Tim.Where(x => x.otvoren == 1).ToList();
             }
 
-            /*QueryManager queryManager = new QueryManager();
-            ResultModel result = queryManager.InitiateQuery("ReadTimAll", "");
-
-            if (result.data != null)
-            {
-                model = (List<Tim>) result.obj;
-            }*/
-
             return View(model);
         }
 

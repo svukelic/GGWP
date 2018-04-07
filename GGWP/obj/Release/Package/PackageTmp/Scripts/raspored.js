@@ -1,4 +1,4 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     //search
     var typingTimer;
@@ -16,18 +16,20 @@ $(document).ready(function () {
 
     //raspored
 
-    $(".raspored_gumb").click(function () {
-        $('.raspored_seq .but')
-            .transition({
-                animation: 'fade',
-                reverse: 'auto',
-                interval: 200
-            })
-            ;
-    });
-
     $("#raspored_timovi").click(function() {
         $(".raspored_sadrzaj").transition('slide down');
     });
-  
+
+    $.ajax({
+        type: "POST",
+        url: "/Mobile/GetIgre",
+        dataType: 'json',
+        data: { "temp": 1 },
+        success: function (jsonData) {
+            alert(jsonData.length)
+        },
+        error: function (jsonData) {
+            alert("Error");
+        }
+    });
 });

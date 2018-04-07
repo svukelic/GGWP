@@ -46,6 +46,7 @@ namespace GGWP.Models
             using (var db = new ggwpDBEntities())
             {
                 t = db.Tim.Find(tID);
+                t.Igra = db.Igra.Find(t.igra_id);
             }
 
             return t;

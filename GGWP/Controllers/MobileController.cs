@@ -61,6 +61,18 @@ namespace GGWP.Controllers
             return JsonConvert.SerializeObject(response);
         }
 
+        public string GetIgre(int temp)
+        {
+            List<Igra> igre = new List<Igra>();
+
+            using (var db = new ggwpDBEntities())
+            {
+                igre = db.Igra.ToList();
+            }
+
+            return JsonConvert.SerializeObject(igre);
+        }
+
         public string GetAllRaspored()
         {
             ApiResponse response = new ApiResponse();
@@ -70,6 +82,29 @@ namespace GGWP.Controllers
                 List<RasporedModel> model = TimManager.GetRaspored(-1);
 
                 if (model.Count > 0)
+                {
+                    response.code = "200";
+                    response.payload = model;
+                }
+                else
+                {
+                    response.code = "404";
+                    response.payload = null;
+                }
+            }
+
+            return JsonConvert.SerializeObject(response);
+        }
+
+        public string GetProfil(int uid)
+        {
+            ApiResponse response = new ApiResponse();
+
+            using (var db = new ggwpDBEntities())
+            {
+                ProfilModel model = new ProfilModel(uid);
+
+                if (model != null)
                 {
                     response.code = "200";
                     response.payload = model;

@@ -6,80 +6,98 @@
 }
 
 <h4 class="ui horizontal inverted divider header">
-    <i class="game icon"></i>
-    Igre
+    <i class="user md icon"></i>
+    Profil
 </h4>
 <p></p>
 
-<<<<<<< HEAD
-@foreach (TimskiRaspored tr in Model.timovi)
-{
-    <h2>@tr.tim.naziv</h2>
-
-     foreach (RasporedModel rm in tr.rasporedi)
-      {
-          <h2>@rm.tim1 vs @rm.tim2</h2>
-      }
-}
-
-<div class="ui inverted unstackable divided items" style="width: 50%; margin: 0 auto;">
-    <div class="item">
-        <div class="image">
-            <img src="~/Content/images/ggwp.png" />
-        </div>
-        <div class="content">
-            <a class="header">Header</a>
-            <div class="description">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-=======
 <div class="ui form">
     <div class="three fields">
-        <div class="field left_side" id="hidden_left">
+        <div class="field centerImage" id="centerColumn">
             <div class="column">
                 <div class="infor">
-                    <label class="ui big label labela">Đuka</label>
+                    <label class="ui big label labela">@Model.user.ime</label>
                 </div>
                 <div class="infor">
-                    <label class="ui big label labela">Bruka</label>
+                    <label class="ui big label labela">@Model.user.username</label>
                 </div>
                 <div class="infor">
-                    <label class="ui big label labela">05-05-1995</label>
+                    <label class="ui big label labela">@Model.user.email</label>
                 </div>
                 <div class="infor">
-                    <label class="ui big label labela">Zagreb</label>
+                    <label class="ui big label labela">@Model.user.dob</label>
                 </div>
                 <div class="infor">
-                    <label class="ui big label labela">FOI 2.g. DS</label>
-                </div>
->>>>>>> origin/Profil_Kontakt_Raspored
-            </div>
-        </div>
-        <div class="field centerImage" id="centerColumn">
-            <div class="ui centered card">
-                <div class="ui fluid image">
-                    <img src="~/Content/images/ggwp.png">
-                </div>
-                <div class="content">
-                    <p class="header">Tim: DemPurtyLips</p>
+                    <label class="ui big label labela">Broj timova: @Model.timovi.Count</label>
                 </div>
             </div>
-        </div>
-        <div class="field right_side" id="hidden_right">
-            <div>Idući gejm: </div>
-            <div class="ui middle aligned three column grid" id="match">
-                <div class="left aligned column">Dem Purty Lips</div>
-                <div class="center aligned column">
-                    <h4 class="ui inverted horizontal divider header">
-                        VS
-                    </h4>
-                </div>
-                <div class="right aligned column">Ajkula</div>
-            </div>
-            <div class="profili_detalji">Detalji &raquo;</div>
         </div>
     </div>
+</div>
+
+<br />
+
+<div id="raspored_timovi">
+    @foreach (TimskiRaspored t in Model.timovi)
+    {
+        <div class="ui middle aligned three column centered grid container">
+            <div class="row raspored_item">
+                <div class="left aligned column">
+                    <div class="ui black inverted segment">
+                        <div class="raspored_naziv_tima">
+                            <strong>@r.tim1.naziv</strong>
+                        </div>
+                        <div class="raspored_sadrzaj">
+                            <div class="ui divider"></div>
+                            <div class="ui inverted list">
+                                @foreach (Clan c in r.tim1.clanovi)
+                                {
+                                    <div class="item">
+                                        <img class="ui avatar image" src="~/Content/images/ggwp.png">
+                                        <div class="content">
+                                            <a class="header">@c.username</a>
+                                            <div class="description">@c.uloga</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="center aligned column">
+                    @r.datum
+                    <h4 class="ui inverted horizontal divider">
+                        <strong>VS</strong>
+                    </h4>
+                </div>
+                <div class="left aligned column">
+                    <div class="ui black inverted segment">
+                        <div class="raspored_naziv_tima">
+                            <strong>@r.tim2.naziv</strong>
+                        </div>
+                        <div class="raspored_sadrzaj">
+                            <div class="ui divider"></div>
+                            <div class="ui inverted list">
+                                @foreach (Clan c in r.tim2.clanovi)
+                                {
+                                    <div class="item">
+                                        <img class="ui avatar image" src="~/Content/images/ggwp.png">
+                                        <div class="content">
+                                            <a class="header">@c.username</a>
+                                            <div class="description">@c.uloga</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    }
 </div>
 
 

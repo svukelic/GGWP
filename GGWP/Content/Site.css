@@ -149,7 +149,6 @@ span.tournament-bracket__number {
 
 /*Profili*/
 .centerImage {
-    cursor: pointer;
     border-radius: 10px;
 }
 
@@ -180,11 +179,11 @@ span.tournament-bracket__number {
 
 .infor {
     margin-bottom: 5px;
+    text-align: center;
 }
 
 .labela {
-    width: 100%;
-    text-align: right;
+    width: 80%;
     border-radius: 10px;
 }
 

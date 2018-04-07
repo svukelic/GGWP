@@ -25,42 +25,23 @@
         
         @foreach (Tim t in Model)
         {
-            <h2>@t.naziv</h2>
+        <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;" onclick="TimKlik(@t.naziv);">
+            <div class="content" style="margin: 0 10px 15px 10px;">
+                <div class="vijest_item">
+                    <h3 class="header"><i class="user outline icon"></i> Naziv: @t.naziv</h3>
+                    <div class="meta">
+                        <span>@t.Igra.naziv</span>
+                    </div>
+                    <div class="description">
+                        <div class="ui divider"></div>
+                        <h3 class="header"><i class="comment outline icon"></i> Opis:</h3>
+                        <p>@t.opis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
         }
-
-        <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;">
-            <div class="content" style="margin: 0 10px 15px 10px;">
-                <div class="vijest_item">
-                    <h3 class="header"><i class="user outline icon"></i> Naziv: Test tim</h3>
-                    <div class="meta">
-                        <span>League of Legends</span>
-                    </div>
-                    <div class="description">
-                        <div class="ui divider"></div>
-                        <h3 class="header"><i class="comment outline icon"></i> Opis:</h3>
-                        <p>Tražimo feedera</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br/>
-
-        <div class="item vijest_container" style="padding-top: 10px; border-top: 1px solid white; border-right: 1px solid white; border-radius: 5px;">
-            <div class="content" style="margin: 0 10px 15px 10px;">
-                <div class="vijest_item">
-                    <h3 class="header"><i class="user outline icon"></i> Naziv: Test tim 2</h3>
-                    <div class="meta">
-                        <span>League of Legends</span>
-                    </div>
-                    <div class="description">
-                        <div class="ui divider"></div>
-                        <h3 class="header"><i class="comment outline icon"></i> Opis:</h3>
-                        <p>Samo challengeri</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br/>
 
     </div>
 </div>
@@ -92,4 +73,4 @@
     </div>
 </div>
 
-<script src="~/Scripts/index.js"></script>
+<script src="~/Scripts/oglasna.js"></script>

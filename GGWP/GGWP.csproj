@@ -228,6 +228,7 @@
       <DependentUpon>bracket.css</DependentUpon>
     </Content>
     <Content Include="Content\component2.css" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\ggwp.png" />
     <Content Include="Content\images\ggwp2.png" />
     <Content Include="Content\login.css">
@@ -425,6 +426,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\ggwp-turnir - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\oglasna.js" />
     <Content Include="Scripts\kreiraj_tim.js" />
     <Content Include="Scripts\messages.js" />
     <Content Include="Scripts\kontakt.js" />
